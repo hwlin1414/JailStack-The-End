@@ -130,7 +130,7 @@ def delete():
     if ret[0] != 0:
         return (json.dumps({"status": "error", "message": "ezjail:" + str(ret[1])}), 500)
     # zfs destroy
-    ret = process.run(["zfs", "destroy", "zroot/usr/jails/{name}".format(name=req['name'])])
+    ret = process.run(["zfs", "destroy", "-r", "zroot/usr/jails/{name}".format(name=req['name'])])
     if ret[0] != 0:
         return (json.dumps({"status": "error", "message": "zfs:" + str(ret[1])}), 500)
     # write key
